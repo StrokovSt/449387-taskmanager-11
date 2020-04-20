@@ -37,11 +37,9 @@ const getRandomDate = () => {
 };
 
 const generateRepeatingDays = () => {
-  const repeatingDays = Object.assign({}, DefaultRepeatingDays);
-  for (const key in repeatingDays) {
-    repeatingDays[key] = Math.random() > 0.5;
-  }
-  return repeatingDays;
+  return Object.assign({}, DefaultRepeatingDays, {
+    "mo": Math.random() > 0.5,
+  });
 };
 
 const generateTask = () => {

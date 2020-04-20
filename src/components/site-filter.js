@@ -1,4 +1,6 @@
-const createFilterValue = (filter, isChecked) => {
+import {createElement} from "../utils.js";
+
+const createFilterMarkup = (filter, isChecked) => {
   const {name, count} = filter;
 
   return (`
@@ -14,12 +16,33 @@ const createFilterValue = (filter, isChecked) => {
 };
 
 const createFilterTemplate = (filters) => {
-  const filtersValue = filters.map((it, i) => createFilterValue(it, i === 0)).join(`\n`);
-  return (`
-    <section class="main__filter filter container">
+  const filtersValue = filters.map((it, i) => createFilterMarkup(it, i === 0)).join(`\n`);
+  return (
+    `<section class="main__filter filter container">
       ${filtersValue}
-    </section>
-  `);
+    </section>`
+  );
 };
 
-export {createFilterTemplate};
+export default class Filter {
+  constructor(filters) {
+    this._filters = filters;
+    this._element = null;
+  }
+
+  getTemplate() {
+    return createFilterTemplate(this._filters);
+  }
+
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+
+    return this._element;
+  }
+
+  removeElement() {
+    this._element = null;
+  }
+}
