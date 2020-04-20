@@ -21,8 +21,6 @@ const siteHeaderElement = siteMainElement.querySelector(`.main__control`);
 const filters = generateMockFilters();
 const tasks = generateTasks(TASK_COUNT);
 
-console.log(tasks);
-
 render(siteHeaderElement, createSiteMenuTemplate(), `beforeend`);
 render(siteMainElement, createFilterTemplate(filters), `beforeend`);
 render(siteMainElement, createSiteBoardTemplate(), `beforeend`);

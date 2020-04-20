@@ -21,9 +21,9 @@ const createColorsMarkup = (colors, currentColor) => {
 
 const createRepeatingDaysMarkup = (days, repeatingDays) => {
   return days.map((day, index) => {
-      const isChecked = repeatingDays[day];
-      return (
-        `<input
+    const isChecked = repeatingDays[day];
+    return (
+      `<input
           class="visually-hidden card__repeat-day-input"
           type="checkbox"
           id="repeat-${day}-${index}"
@@ -33,10 +33,10 @@ const createRepeatingDaysMarkup = (days, repeatingDays) => {
         />
         <label class="card__repeat-day" for="repeat-${day}-${index}"
           >${day}</label
-        >`
-      );
-    })
-    .join(`\n`);
+      >`
+    );
+  })
+  .join(`\n`);
 };
 
 const createSiteTaskEditTemplate = (task) => {
@@ -83,8 +83,7 @@ const createSiteTaskEditTemplate = (task) => {
                   date: <span class="card__date-status">${isDateShowing ? `yes` : `no`}</span>
                 </button>
 
-                ${isDateShowing ?
-                  `<fieldset class="card__date-deadline">
+                ${isDateShowing ? `<fieldset class="card__date-deadline">
                     <label class="card__input-deadline-wrap">
                       <input
                         class="card__date"
@@ -94,22 +93,17 @@ const createSiteTaskEditTemplate = (task) => {
                         value="${date} ${time}"
                       />
                     </label>
-                  </fieldset>`
-                  : ``
-                }
+                  </fieldset>` : `` }
 
                 <button class="card__repeat-toggle" type="button">
                   repeat:<span class="card__repeat-status">${isRepeatingTask ? `yes` : `no`}</span>
                 </button>
 
-                ${isRepeatingTask ?
-                  `<fieldset class="card__repeat-days">
+                ${isRepeatingTask ? `<fieldset class="card__repeat-days">
                       <div class="card__repeat-days-inner">
                         ${repeatingDaysMarkup}
                       </div>
-                    </fieldset>`
-                    : ``
-                }
+                    </fieldset>` : `` }
               </div>
             </div>
 
