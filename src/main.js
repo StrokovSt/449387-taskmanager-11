@@ -3,7 +3,7 @@ import FilterComponent from "./components/site-filter.js";
 import LoadMoreButtonComponent from "./components/site-loadMoreButton.js";
 import TaskEditComponent from "./components/site-taskEdit.js";
 import TaskComponent from "./components/site-task.js";
-import TasksComponent from "./components/tasks.js";
+import TasksComponent from "./components/site-tasks.js";
 import NoTasksComponent from "./components/no-tasks.js";
 import SiteMenuComponent from "./components/site-menu.js";
 import SortComponent from "./components/site-sort.js";

@@ -1,3 +1,5 @@
+import {createElement} from "../utils.js";
+
 export default class AbstractComponent {
   constructor() {
     if (new.target === AbstractComponent) {
@@ -7,7 +9,7 @@ export default class AbstractComponent {
     this._element = null;
   }
 
-  getElement() {
+  getTemplate() {
     throw new Error(`Abstract method not implemented: getTemplate`);
   }
 
