@@ -10,7 +10,7 @@ import SortComponent from "./components/site-sort.js";
 
 import {generateTasks} from "./mock/task-mock-data.js";
 import {generateMockFilters} from "./mock/filter-mock-data.js";
-import {render, RenderPosition} from "./utils.js";
+import {render, RenderPosition} from "./utils/render.js";
 
 const TASK_COUNT = 22;
 const SHOWING_TASKS_COUNT_ON_START = 8;
