@@ -1,6 +1,6 @@
 import AbstractComponent from "./abstract-component.js";
 import {MONTH_NAMES} from "../const.js";
-import {formatTime} from "../utils.js";
+import {formatTime} from "../utils/common.js";
 
 const createSiteTaskTemplate = (task) => {
   const {description, dueDate, color, repeatingDays, isArchive, isFavorite} = task;
@@ -72,6 +72,9 @@ export default class Task extends AbstractComponent {
   getTemplate() {
     return createSiteTaskTemplate(this._task);
   }
-}
 
-export {createSiteTaskTemplate};
+  setEditButtonClickHandler(handler) {
+    this.getElement().querySelector(`.card__btn--edit`)
+      .addEventListener(`click`, handler);
+  }
+}

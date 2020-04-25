@@ -6,10 +6,12 @@ const createSiteLoadMoreButtonTemplate = () => {
   );
 };
 
-export {createSiteLoadMoreButtonTemplate};
-
 export default class LoadMoreButton extends AbstractComponent {
   getTemplate() {
     return createSiteLoadMoreButtonTemplate();
+  }
+
+  setClickHandler(handler) {
+    this.getElement().addEventListener(`click`, handler);
   }
 }
