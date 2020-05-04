@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 import {createElement} from "../utils.js";
 
+=======
+>>>>>>> master
 const createSiteMenuTemplate = () => {
   return (
     `<section class="control__btn-wrap">
@@ -33,6 +36,7 @@ const createSiteMenuTemplate = () => {
   );
 };
 
+<<<<<<< HEAD
 export default class SiteMenu {
   constructor() {
     this._element = null;
@@ -54,3 +58,6 @@ export default class SiteMenu {
     this._element = null;
   }
 }
+=======
+export {createSiteMenuTemplate};
+>>>>>>> master

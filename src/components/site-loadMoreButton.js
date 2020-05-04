@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 import {createElement} from "../utils.js";
 
+=======
+>>>>>>> master
 const createSiteLoadMoreButtonTemplate = () => {
   return (
     `<button class="load-more" type="button">load more</button>`
@@ -7,6 +10,7 @@ const createSiteLoadMoreButtonTemplate = () => {
 };
 
 export {createSiteLoadMoreButtonTemplate};
+<<<<<<< HEAD
 
 export default class LoadMoreButton {
   constructor() {
@@ -29,3 +33,5 @@ export default class LoadMoreButton {
     this._element = null;
   }
 }
+=======
+>>>>>>> master
