@@ -1,6 +1,6 @@
 import AbstractComponent from "./abstract-component.js";
-import {MONTH_NAMES} from "../const.js";
-import {formatTime} from "../utils/common.js";
+import {formatTime, formatDate} from "../utils/common.js";
+
 
 const createButtonMarkup = (name, isActive = true) => {
   return (
@@ -13,13 +13,19 @@ const createButtonMarkup = (name, isActive = true) => {
   );
 };
 
-const createSiteTaskTemplate = (task) => {
+// Функцию для генерации HTML-разметки можно превратить в метод класса,
+// однако делать мы этого не будем, потому что это не критично,
+// а функция у нас уже была описана
+const createTaskTemplate = (task) => {
+  // Обратите внимание, что всю работу мы производим заранее.
+  // Внутри шаблонной строки мы не производим никаких вычислений,
+  // потому что внутри большой разметки сложно искать какой-либо код
   const {description, dueDate, color, repeatingDays} = task;
 
   const isExpired = dueDate instanceof Date && dueDate < Date.now();
   const isDateShowing = !!dueDate;
 
-  const date = isDateShowing ? `${dueDate.getDate()} ${MONTH_NAMES[dueDate.getMonth()]}` : ``;
+  const date = isDateShowing ? formatDate(dueDate) : ``;
   const time = isDateShowing ? formatTime(dueDate) : ``;
 
   const editButton = createButtonMarkup(`edit`);
@@ -28,7 +34,6 @@ const createSiteTaskTemplate = (task) => {
 
   const repeatClass = Object.values(repeatingDays).some(Boolean) ? `card--repeat` : ``;
   const deadlineClass = isExpired ? `card--deadline` : ``;
-
 
   return (
     `<article class="card card--${color} ${repeatClass} ${deadlineClass}">
@@ -39,14 +44,17 @@ const createSiteTaskTemplate = (task) => {
             ${archiveButton}
             ${favoritesButton}
           </div>
+
         <div class="card__color-bar">
           <svg class="card__color-bar-wave" width="100%" height="10">
             <use xlink:href="#wave"></use>
           </svg>
         </div>
+
         <div class="card__textarea-wrap">
           <p class="card__text">${description}</p>
         </div>
+
         <div class="card__settings">
           <div class="card__details">
             <div class="card__dates">
@@ -67,11 +75,12 @@ const createSiteTaskTemplate = (task) => {
 export default class Task extends AbstractComponent {
   constructor(task) {
     super();
+
     this._task = task;
   }
 
   getTemplate() {
-    return createSiteTaskTemplate(this._task);
+    return createTaskTemplate(this._task);
   }
 
   setEditButtonClickHandler(handler) {
