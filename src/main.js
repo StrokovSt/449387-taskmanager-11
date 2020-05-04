@@ -1,30 +1,25 @@
-import {createSiteMenuTemplate} from "./components/site-menu.js";
-import {createFilterTemplate} from "./components/site-filter.js";
-import {createSiteBoardTemplate} from "./components/site-board.js";
-import {createSiteTaskTemplate} from "./components/site-task.js";
-import {createSiteTaskEditTemplate} from "./components/site-taskEdit.js";
-import {createSiteLoadMoreButtonTemplate} from "./components/site-loadMoreButton.js";
+import BoardComponent from "./components/board.js";
+import BoardController from "./controllers/board.js";
+import FilterComponent from "./components/filter.js";
+import SiteMenuComponent from "./components/site-menu.js";
+import {generateTasks} from "./mock/task.js";
+import {generateFilters} from "./mock/filter.js";
+import {render, RenderPosition} from "./utils/render.js";
 
-const TASK_COUNT = 3;
 
-const render = (container, template, place) => {
-  container.insertAdjacentHTML(place, template);
-};
+const TASK_COUNT = 22;
 
 const siteMainElement = document.querySelector(`.main`);
 const siteHeaderElement = siteMainElement.querySelector(`.main__control`);
 
-render(siteHeaderElement, createSiteMenuTemplate(), `beforeend`);
-render(siteMainElement, createFilterTemplate(), `beforeend`);
-render(siteMainElement, createSiteBoardTemplate(), `beforeend`);
+const tasks = generateTasks(TASK_COUNT);
+const filters = generateFilters();
 
-const taskListElement = siteMainElement.querySelector(`.board__tasks`);
-const boardElement = siteMainElement.querySelector(`.board`);
+render(siteHeaderElement, new SiteMenuComponent(), RenderPosition.BEFOREEND);
+render(siteMainElement, new FilterComponent(filters), RenderPosition.BEFOREEND);
 
-render(taskListElement, createSiteTaskEditTemplate(), `beforeend`);
+const boardComponent = new BoardComponent();
+const boardController = new BoardController(boardComponent);
 
-for (let i = 0; i < TASK_COUNT; i++) {
-  render(taskListElement, createSiteTaskTemplate(), `beforeend`);
-}
-
-render(boardElement, createSiteLoadMoreButtonTemplate(), `beforeend`);
+render(siteMainElement, boardComponent, RenderPosition.BEFOREEND);
+boardController.render(tasks);
